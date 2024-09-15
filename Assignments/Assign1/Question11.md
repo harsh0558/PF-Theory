@@ -4,7 +4,7 @@
 
 #FLOWCHART
 
-![image](https://github.com/user-attachments/assets/6b5f9a4b-9cbf-4df4-b2f3-9d1ca41e6aba)
+![image](https://github.com/user-attachments/assets/f0c74f3e-e792-4322-b95c-e6fbb10f7cef)
 
 #IPO
 
