@@ -1,11 +1,11 @@
 #PSEUDOCODE
 
-![image](https://github.com/user-attachments/assets/028500bf-c141-444d-ad55-7dc2e5d39c22)
+![image](https://github.com/user-attachments/assets/22e36db9-8b5e-43c8-a025-faca67446eaf)
 
 #FLOWCHART
 
-![image](https://github.com/user-attachments/assets/ce67ae14-9bc7-4552-bccf-378544495b7f)
+![image](https://github.com/user-attachments/assets/5cc7e34c-2add-49c4-b835-37676aab0404)
 
 #IPO
 
-![image](https://github.com/user-attachments/assets/d101a502-0548-4018-9982-ff58b3bcfd0c)
+![image](https://github.com/user-attachments/assets/6d230738-320a-477e-825a-7d22297e72dd)
