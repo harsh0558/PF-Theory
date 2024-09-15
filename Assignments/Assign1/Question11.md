@@ -1,7 +1,6 @@
 #PSEUDOCODE
 
-![image](https://github.com/user-attachments/assets/58971619-e2bc-43ce-854b-0ed1125e5894)
-![image](https://github.com/user-attachments/assets/c359ac8d-2b33-49b5-951a-8bd26350aa5c)
+![image](https://github.com/user-attachments/assets/d0826dc2-d0cc-4936-a940-4c57720e2434)
 
 #FLOWCHART
 
