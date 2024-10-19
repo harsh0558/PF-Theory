@@ -4,9 +4,11 @@
 void histogram(int arr[], int count){
     int i,j;
     int max=-1;
+    
     printf("\tHORIZONTAL HISTOGRAM\n");
     printf("\n");
-    for(i=1;i<=count;i++){
+    
+    for(i=0;i<count;i++){
         if(arr[i]>max){
             max = arr[i];
         }
@@ -15,9 +17,28 @@ void histogram(int arr[], int count){
     for(i=0;i<count;i++){
         printf("%d:\t",arr[i]);
         for(j=1;j<=arr[i];j++){
-            printf("*");
+            printf("*\t");
         }
         printf("\n");
+    }
+    
+    printf("\n");
+    printf("\tVERTICAL HISTOGRAM\n");
+    printf("\n");
+    
+    for(i=max;i>=1;i--){
+        for(j=0;j<count;j++){
+            if(arr[j]<i){
+                printf(" \t");
+            }else{
+                printf("*\t");
+            }
+        }
+        printf("\n");
+    }
+    
+    for(i=0;i<count;i++){
+        printf("%d\t",arr[i]);
     }
     
 }
