@@ -56,37 +56,37 @@ int DecimalToBinary(int num) {
 
 void HexadecimalToBinary(char arr[]){
     int size = strlen(arr);
-    char decimal[1000000];
+    char decimal[1000000]={'\0'};
     int num,i;
-    char str[100];
+    char str[5];
     for(i=0;i<size;i++){
         if(arr[i]=='A' || arr[i]=='a'){
             num = 10;
-            sprintf(str,"%d",DecimalToBinary(num));
+            sprintf(str,"%04d",DecimalToBinary(num));
             strcat(decimal,str);
         }else if(arr[i]=='B' || arr[i]=='b'){
             num = 11;
-            sprintf(str,"%d",DecimalToBinary(num));
+            sprintf(str,"%04d",DecimalToBinary(num));
             strcat(decimal,str);
         }else if(arr[i]=='C' || arr[i]=='c'){
             num = 12;
-            sprintf(str,"%d",DecimalToBinary(num));
+            sprintf(str,"%04d",DecimalToBinary(num));
             strcat(decimal,str);
         }else if(arr[i]=='D' || arr[i]=='d'){
             num = 13;
-            sprintf(str,"%d",DecimalToBinary(num));
+            sprintf(str,"%04d",DecimalToBinary(num));
             strcat(decimal,str);
         }else if(arr[i]=='E' || arr[i]=='e'){
             num = 14;
-            sprintf(str,"%d",DecimalToBinary(num));
+            sprintf(str,"%04d",DecimalToBinary(num));
             strcat(decimal,str);
         }else if(arr[i]=='F' || arr[i]=='f'){
             num = 15;
-            sprintf(str,"%d",DecimalToBinary(num));
+            sprintf(str,"%04d",DecimalToBinary(num));
             strcat(decimal,str);
         }else{
             num = (int)arr[i]-(int)'0';
-            sprintf(str,"%d",DecimalToBinary(num));
+            sprintf(str,"%04d",DecimalToBinary(num));
             strcat(decimal,str);
         }
     }
@@ -94,7 +94,7 @@ void HexadecimalToBinary(char arr[]){
 } 
 
 int main() {
-    char arr[]= {"156"};
+    char arr[]= {"100"};
     HexadecimalToBinary(arr);
     return 0;
 }
