@@ -116,23 +116,102 @@ void BinaryToHexadecimal(long num){
         size++;
     }
     
-    long index = 1;
-    long data;
+
     n = num;
     int i;
-    int ans;
-    while(){
-        data = n/10000;
-        for(i=1;i<=4;i++){
+    int ans=0;
+    char hex[1000000] = {'\0'};
+    int index = 1000000-2;
+    while(n>0){
+        data = n%10000;
+        n = n/10000;
+        ans =0;
+        for(i=0;i<4;i++){
             if(data%10==1){
-                
-            }    
+                ans = ans+pow(2,i);
+            }  
+            data = data /10;
         }
+        if(ans==10){
+            hex[index] = 'A';
+        }else if (ans==11){
+            hex[index] = 'B';
+        }else if(ans==12){
+            hex[index] = 'C';
+        }else if(ans==13){
+            hex[index] = 'D';
+        }else if(ans==14){
+            hex[index] = 'E';
+        }else if (ans==15){
+            hex[index] = 'F';
+        }else{
+            hex[index] = (char)(ans+'0');
+        }
+        index--;
     }
-    
+    for(i=index+1;i<1000000-1;i++){
+        if(hex[i] != '\0'){
+            printf("%c",hex[i]);
+        }        
+    }
 }
 
+void DecimalToHexadecimal(long num){
+    return BinaryToHexadecimal((DecimalToBinary(num)));
+}
+    
+    
+
+
 int main() {
-    BinaryToHexadecimal(10101010);
+    long input;
+    printf("\tCHOOSE THE CONVERSION YOU WANT TO DO\n");
+    printf("1) BINARY TO DECIMAL\n");
+    printf("2) DECIMAL TO BINARY\n");
+    printf("3) BINARY TO HEXADECIMAL\n");
+    printf("4) DECIMAL TO HEXADECIMAL\n");
+    printf("5) HEXADECIMAL TO BINARY\n");
+    printf("6) HEXADECIMAL TO DECIMAL\n");
+    printf("Enter your choice: ");
+    scanf("%ld", &input);
+
+    if (input == 1) {
+        long ans;
+        printf("Enter the Binary value: ");
+        scanf("%ld", &ans);
+        printf("The Decimal equivalent of %ld is: %ld\n", ans, BinaryToDecimal(ans));
+    } else if (input == 2) {
+        long ans;
+        printf("Enter the Decimal value: ");
+        scanf("%ld", &ans);
+        printf("The Binary equivalent of %ld is: %ld\n", ans, DecimalToBinary(ans));
+    } else if (input == 3) {
+        long ans;
+        printf("Enter the Binary value: ");
+        scanf("%ld", &ans);
+        printf("The Hexadecimal equivalent of %ld is: ", ans);
+        BinaryToHexadecimal(ans);
+        printf("\n");
+    } else if (input == 4) {
+        long ans;
+        printf("Enter the Decimal value: ");
+        scanf("%ld", &ans);
+        printf("The Hexadecimal equivalent of %ld is: ", ans);
+        DecimalToHexadecimal(ans);
+        printf("\n");
+    } else if (input == 5) {
+        char ans[100]; 
+        printf("Enter the Hexadecimal value: ");
+        scanf("%s", ans);
+        printf("The Binary equivalent of %s is: %ld\n", ans, HexadecimalToBinary(ans));
+    } else if (input == 6) { 
+        char ans[100];
+        printf("Enter the Hexadecimal value: ");
+        scanf("%s", ans);
+        printf("The Decimal equivalent of %s is: %ld\n", ans, HexadecimalToDecimal(ans));
+    } else {
+        printf("Invalid choice! Please enter a number between 1 and 6.\n");
+    }
+
     return 0;
 }
