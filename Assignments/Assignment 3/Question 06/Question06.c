@@ -3,7 +3,6 @@
 #include <string.h>
 
 int main() {
-    
     struct Weather {
         float temperature;
         float rainfall;
@@ -14,7 +13,7 @@ int main() {
         char cropType[20];
         int growthStage;
         float expectedYield;
-        struct Weather *weather; 
+        struct Weather *weather;
     };
 
     struct Equipment {
@@ -35,11 +34,11 @@ int main() {
         float gpsLongitude;
         float soilHealth;
         float moistureLevel;
-        struct Crop *crops;     
+        struct Crop *crops;
         int numCrops;
-        struct Equipment *equipments; 
+        struct Equipment *equipments;
         int numEquipments;
-        struct Sensor *sensors; 
+        struct Sensor *sensors;
         int numSensors;
     };
 
@@ -51,7 +50,6 @@ int main() {
         char emergencyResponsePlan[100];
     };
 
-    
     int numHubs, i, j, k;
     printf("Enter the number of regional hubs: ");
     scanf("%d", &numHubs);
@@ -64,7 +62,6 @@ int main() {
         printf("Enter number of fields in this hub: ");
         scanf("%d", &regionalHubs[i].numFields);
 
-        
         regionalHubs[i].fields = (struct Field *)malloc(regionalHubs[i].numFields * sizeof(struct Field));
 
         for (j = 0; j < regionalHubs[i].numFields; j++) {
@@ -85,18 +82,16 @@ int main() {
             printf("Enter number of crops: ");
             scanf("%d", &regionalHubs[i].fields[j].numCrops);
 
-            
             regionalHubs[i].fields[j].crops = (struct Crop *)malloc(regionalHubs[i].fields[j].numCrops * sizeof(struct Crop));
             for (k = 0; k < regionalHubs[i].fields[j].numCrops; k++) {
                 printf("Enter data for Crop %d in Field %d:\n", k + 1, j + 1);
                 printf("Enter crop type: ");
-                scanf("%s", regionalHubs[i].fields[j].crops[k].cropType);
+                scanf("%19s", regionalHubs[i].fields[j].crops[k].cropType);
                 printf("Enter growth stage: ");
                 scanf("%d", &regionalHubs[i].fields[j].crops[k].growthStage);
                 printf("Enter expected yield: ");
                 scanf("%f", &regionalHubs[i].fields[j].crops[k].expectedYield);
 
-                
                 regionalHubs[i].fields[j].crops[k].weather = (struct Weather *)malloc(sizeof(struct Weather));
                 printf("Enter temperature: ");
                 scanf("%f", &regionalHubs[i].fields[j].crops[k].weather->temperature);
@@ -109,33 +104,31 @@ int main() {
             printf("Enter number of equipment: ");
             scanf("%d", &regionalHubs[i].fields[j].numEquipments);
 
-            
             regionalHubs[i].fields[j].equipments = (struct Equipment *)malloc(regionalHubs[i].fields[j].numEquipments * sizeof(struct Equipment));
             for (k = 0; k < regionalHubs[i].fields[j].numEquipments; k++) {
                 printf("Enter data for Equipment %d in Field %d:\n", k + 1, j + 1);
                 printf("Enter equipment name: ");
-                scanf("%s", regionalHubs[i].fields[j].equipments[k].equipmentName);
+                scanf("%19s", regionalHubs[i].fields[j].equipments[k].equipmentName);
                 printf("Enter operational status (1 for active, 0 for inactive): ");
                 scanf("%d", &regionalHubs[i].fields[j].equipments[k].operationalStatus);
                 printf("Enter fuel level: ");
                 scanf("%f", &regionalHubs[i].fields[j].equipments[k].fuelLevel);
                 printf("Enter activity schedule: ");
-                scanf("%s", regionalHubs[i].fields[j].equipments[k].activitySchedule);
+                scanf("%49s", regionalHubs[i].fields[j].equipments[k].activitySchedule);
             }
 
             printf("Enter number of sensors: ");
             scanf("%d", &regionalHubs[i].fields[j].numSensors);
 
-            
             regionalHubs[i].fields[j].sensors = (struct Sensor *)malloc(regionalHubs[i].fields[j].numSensors * sizeof(struct Sensor));
             for (k = 0; k < regionalHubs[i].fields[j].numSensors; k++) {
                 printf("Enter data for Sensor %d in Field %d:\n", k + 1, j + 1);
                 printf("Enter nutrient data: ");
-                scanf("%s", regionalHubs[i].fields[j].sensors[k].nutrientData);
+                scanf("%49s", regionalHubs[i].fields[j].sensors[k].nutrientData);
                 printf("Enter pH level: ");
                 scanf("%f", &regionalHubs[i].fields[j].sensors[k].pHLevel);
                 printf("Enter pest activity: ");
-                scanf("%s", regionalHubs[i].fields[j].sensors[k].pestActivity);
+                scanf("%49s", regionalHubs[i].fields[j].sensors[k].pestActivity);
             }
         }
 
@@ -143,10 +136,51 @@ int main() {
         scanf("%f", &regionalHubs[i].yieldPrediction);
 
         printf("Enter resource distribution plan for Regional Hub %d: ", i + 1);
-        scanf("%s", regionalHubs[i].resourceDistribution);
+        scanf("%99s", regionalHubs[i].resourceDistribution);
 
         printf("Enter emergency response plan for Regional Hub %d: ", i + 1);
-        scanf("%s", regionalHubs[i].emergencyResponsePlan);
+        scanf("%99s", regionalHubs[i].emergencyResponsePlan);
+    }
+
+    printf("\n--- Data Summary ---\n");
+    for (i = 0; i < numHubs; i++) {
+        printf("\nRegional Hub %d:\n", i + 1);
+        for (j = 0; j < regionalHubs[i].numFields; j++) {
+            printf("  Field %d:\n", j + 1);
+            printf("    GPS Coordinates: Latitude = %.2f, Longitude = %.2f\n",
+                   regionalHubs[i].fields[j].gpsLatitude, regionalHubs[i].fields[j].gpsLongitude);
+            printf("    Soil Health: %.2f, Moisture Level: %.2f\n",
+                   regionalHubs[i].fields[j].soilHealth, regionalHubs[i].fields[j].moistureLevel);
+            printf("    Crops:\n");
+            for (k = 0; k < regionalHubs[i].fields[j].numCrops; k++) {
+                printf("      Crop %d:\n", k + 1);
+                printf("        Type: %s\n", regionalHubs[i].fields[j].crops[k].cropType);
+                printf("        Growth Stage: %d\n", regionalHubs[i].fields[j].crops[k].growthStage);
+                printf("        Expected Yield: %.2f\n", regionalHubs[i].fields[j].crops[k].expectedYield);
+                printf("        Weather:\n");
+                printf("          Temperature: %.2f\n", regionalHubs[i].fields[j].crops[k].weather->temperature);
+                printf("          Rainfall: %.2f\n", regionalHubs[i].fields[j].crops[k].weather->rainfall);
+                printf("          Wind Patterns: %.2f\n", regionalHubs[i].fields[j].crops[k].weather->windPatterns);
+            }
+            printf("    Equipment:\n");
+            for (k = 0; k < regionalHubs[i].fields[j].numEquipments; k++) {
+                printf("      Equipment %d:\n", k + 1);
+                printf("        Name: %s\n", regionalHubs[i].fields[j].equipments[k].equipmentName);
+                printf("        Status: %d\n", regionalHubs[i].fields[j].equipments[k].operationalStatus);
+                printf("        Fuel Level: %.2f\n", regionalHubs[i].fields[j].equipments[k].fuelLevel);
+                printf("        Schedule: %s\n", regionalHubs[i].fields[j].equipments[k].activitySchedule);
+            }
+            printf("    Sensors:\n");
+            for (k = 0; k < regionalHubs[i].fields[j].numSensors; k++) {
+                printf("      Sensor %d:\n", k + 1);
+                printf("        Nutrient Data: %s\n", regionalHubs[i].fields[j].sensors[k].nutrientData);
+                printf("        pH Level: %.2f\n", regionalHubs[i].fields[j].sensors[k].pHLevel);
+                printf("        Pest Activity: %s\n", regionalHubs[i].fields[j].sensors[k].pestActivity);
+            }
+        }
+        printf("  Yield Prediction: %.2f\n", regionalHubs[i].yieldPrediction);
+        printf("  Resource Distribution Plan: %s\n", regionalHubs[i].resourceDistribution);
+        printf("  Emergency Response Plan: %s\n", regionalHubs[i].emergencyResponsePlan);
     }
 
     
